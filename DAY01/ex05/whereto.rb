@@ -14,9 +14,11 @@ $capitals_cities = {
 def find_state(argv)
   begin
     argv.map! do |key_val|
-      raise "IndexError" if (short_capital = $capitals_cities.key(key_val.strip.capitalize)) == nil?
+      short_state = $states.fetch(key_val.strip.capitalize) if (key_val.strip.capitalize)
+      puts("#{$capitals_cities.key(short_state)} is the capital of #{key_val.strip.capitalize}") if short_state.nil?
+      short_capital = $capitals_cities.key(key_val.strip.capitalize)
+      puts("#{$states.key(short_capital)} is the capital of #{key_val.strip.capitalize}") if short_capital.nil?
 
-      puts("#{$states.key(short_capital)} is the capital of #{key_val.strip.capitalize}")
     end
   rescue IndexError => error
     puts('Sosi bibu becouse ' + error.message)
